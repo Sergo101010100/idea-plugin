@@ -1,0 +1,688 @@
+[
+  {
+    "owner": "223",
+    "updatedBy": "343",
+    "customFields": {
+      "Команда": "34",
+      "АС": "wer",
+      "Функциональная принадлежность": "Конфигурация",
+      "Согласование с аналитиком": "Согласовано",
+      "Тип теста": "СТ",
+      "Автоматизирован": "Да",
+      "Модуль": "bl-unitflow-cards",
+      "Вид тестирования": "Регресс"
+    },
+    "updatedOn": "2023-04-25T13:39:56.351Z",
+    "precondition": "Открыть лог bl_unitflow на СТ (str-vat-app0433.vm.mos.cloud.sbrf.ru) и удостовериться в отсутствии ошибок связанных с взаимодействием с Zk",
+    "majorVersion": 1,
+    "priority": "Low",
+    "createdOn": "2020-02-03T11:16:27.742Z",
+    "labels": [
+      "StatusNone"
+    ],
+    "objective": "<section><div title=\"Нажмите, чтобы изменить\">Теперь конфиги в Зукипер могут подменяться оперативно, без полного пересоздания соединений (с Кафкой, с базой данных и тд)</div></section>",
+    "component": "bl-unitflow",
+    "projectKey": "FMAAS",
+    "folder": "/Регресс/ФП ИС/Регресс по модулям/bl-unitflow-cards",
+    "createdBy": "yazmukhamedov-im",
+    "latestVersion": true,
+    "testScript": {
+      "id": 303498,
+      "type": "STEP_BY_STEP",
+      "steps": [
+        {
+          "attachments": [
+            {
+              "fileName": "88c6ddca-d3ff-4e3b-84b7-8f92cc22c576",
+              "fileSize": 22292,
+              "name": "EPOS_PURCHASE_CARD.txt",
+              "id": 210676,
+              "createdOn": "2020-02-03T11:09:23.733Z",
+              "projectId": 23449,
+              "userKey": "fds"
+            }
+          ],
+          "expectedResult": "Сообщение успешно сформированы и отправлены в топики(event,rules,extfact)",
+          "description": "Сгенерировать и отправить карточную транзакцию в 3 топика:<br><pre>TR_RSA_Cards_EVENT</pre><pre>TR_RSA_Cards_RULES</pre><pre>TR_RSA_Cards_EXT_FACT</pre><br>с transaction.current.event.current.client.type = EPOS_PURCHASE",
+          "index": 1,
+          "id": 1187942
+        },
+        {
+          "description": "<strong><span style=\"color: rgb(226, 80, 65);\">Востановить первоначальную конфигурацию модуля</span></strong>",
+          "index": 3,
+          "id": 1189525
+        },
+        {
+          "testData": "возможные поля для изменения: \"events.filters\", \"rules.filters\", \"ext.filters\", \"calculated.fields\"&nbsp;",
+          "expectedResult": "Новое значение конфигов успешно приминились. В логе отсутствует ошибка связанная с работой Zk.<br>В логе отсутствует запись об пересоздание соединение с кафкой, базой и тп.",
+          "description": "Открыть Zk и изменить одно из полей&nbsp;<section><div title=\"Нажмите, чтобы изменить\">znode&nbsp;/config-fmaas/adapters/bl_unitflow_cards_v2/review_deny_flow :<br>\"events.filters\", а именно , убрав оттуда значение \"EPOS_PURCHASE\" из списка transaction.current.event.current.client.type</div></section>",
+          "index": 0,
+          "id": 1187941
+        },
+        {
+          "expectedResult": "Сообщение отсутствует в топике ivr.confirmation (искать по event_id из 2го шага)",
+          "description": "Сообщение не прошло фильтр bl-unitflow и не попало в топик ivr.confirmation",
+          "index": 2,
+          "id": 1187943
+        }
+      ]
+    },
+    "lastTestResultStatus": "Pass",
+    "name": "Горячая (без полного рестарта) замена znode /config-fmaas/adapters/bl_unitflow_cards_v2/review_deny_flow",
+    "parameters": {
+      "variables": [],
+      "entries": []
+    },
+    "key": "FMAAS-T2",
+    "status": "Актуальный"
+  },
+  {
+    "owner": "dsf",
+    "updatedBy": "wefsdf",
+    "customFields": {
+      "Команда": "SAFP. Внутренние интеграции [61007719]",
+      "АС": "Антифрод ФЛ. Интеграционный сервис [CI01099171]",
+      "Функциональная принадлежность": "Конфигурация",
+      "Согласование с аналитиком": "Согласовано",
+      "Тип теста": "СТ",
+      "Автоматизирован": "Да",
+      "Модуль": "bl-unitflow",
+      "Вид тестирования": "Регресс"
+    },
+    "updatedOn": "2023-04-25T13:39:46.198Z",
+    "precondition": "Открыть лог bl_unitflow на СТ (str-vat-app0433.vm.mos.cloud.sbrf.ru) и удостовериться в отсутствии ошибок связанных с взаимодействием с Zk",
+    "majorVersion": 1,
+    "priority": "Low",
+    "createdOn": "2020-02-03T13:06:23.246Z",
+    "labels": [
+      "StatusNone"
+    ],
+    "objective": "<div title=\"Нажмите, чтобы изменить\">Теперь конфиги в Зукипер могут подменяться оперативно, без полного пересоздания соединений (с Кафкой, с базой данных и тд)</div>",
+    "component": "bl-unitflow",
+    "projectKey": "FMAAS",
+    "folder": "/Регресс/ФП ИС/Регресс по модулям/bl-unitflow",
+    "createdBy": "yazmukhamedov-im",
+    "latestVersion": true,
+    "testScript": {
+      "id": 303640,
+      "type": "STEP_BY_STEP",
+      "steps": [
+        {
+          "description": "<strong><span style=\"color: rgb(226, 80, 65);\">Востановить первоначальную конфигурацию модуля</span></strong>",
+          "index": 3,
+          "id": 1189524
+        },
+        {
+          "expectedResult": "Сообщение отсутствует в топике ivr.confirmation",
+          "description": "Сообщение не попало в ivr.confirmation поскольку не прошло фильтрацию",
+          "index": 2,
+          "id": 1188632
+        },
+        {
+          "expectedResult": "Сообщение успешно сгенерировано и отправлено в топики&nbsp;",
+          "description": "Сгенерировать и отправить uko транзакцию в 3 топика:<br><pre>TR_RSA_UKO_EVENT</pre><pre>TR_RSA_UKO_RULES</pre><pre>TR_RSA_UKO_EXT_FACT</pre><br>c transaction.current.event.current.clientDefinedChannelIndicator = WEBAPI",
+          "index": 1,
+          "id": 1188631
+        },
+        {
+          "testData": "возможные поля для изменения:<br>\"events.mbk.filters\", \"events.sbol.filters\",&nbsp;\"rules.mbk.filters\", \"rules.sbol.filters\"<br>\"calculated.fields\", \"throughMessageFields\"",
+          "expectedResult": "Новое значение конфигов успешно приминились. <br>В логе отсутствует ошибка связанная с работой Zk.<br>В логе отсутствует запись об пересоздание соединение с кафкой, базой и тп.",
+          "description": "Открыть Zk и изменить одно из полей&nbsp;<section><section><div title=\"Нажмите, чтобы изменить\">znode /config-fmaas/adapters/bl_unitflow_v2/sms_deny_flow :</div></section><div title=\"Нажмите, чтобы изменить\"><br>\"events.sbol.filters\", а именно , убрав оттуда значение \"WEBAPI\" из списка transaction.current.event.current.clientDefinedChannelIndicator</div></section>",
+          "index": 0,
+          "id": 1188630
+        }
+      ]
+    },
+    "lastTestResultStatus": "Pass",
+    "name": "\"Горячая (без полного рестарта)\" замена znode /config-fmaas/adapters/bl_unitflow_v2/sms_deny_flow",
+    "parameters": {
+      "variables": [],
+      "entries": []
+    },
+    "key": "FMAAS-T3",
+    "status": "Актуальный"
+  },
+  {
+    "owner": "sdfsdf",
+    "updatedBy": "dfsdf",
+    "customFields": {
+      "АС": "Антифрод ФЛ. Интеграционный сервис [CI01099171]",
+      "Функциональная принадлежность": "Конфигурация",
+      "Согласование с аналитиком": "Согласовано",
+      "Тип теста": "СТ",
+      "Вид тестирования": "Регресс"
+    },
+    "updatedOn": "2022-02-03T12:59:34.946Z",
+    "precondition": "Открыть лог bl_unitflow на СТ (str-vat-app0433.vm.mos.cloud.sbrf.ru) и удостовериться в отсутствии ошибок связанных с взаимодействием с Zk",
+    "majorVersion": 1,
+    "priority": "Low",
+    "createdOn": "2020-02-03T13:35:29.011Z",
+    "labels": [
+      "StatusNone"
+    ],
+    "objective": "<div title=\"Нажмите, чтобы изменить\">Теперь конфиги в Зукипер могут подменяться оперативно, без полного пересоздания соединений (с Кафкой, с базой данных и тд)</div>",
+    "component": "bl-unitflow",
+    "projectKey": "FMAAS",
+    "folder": "/Хранилище не актуальных кейсов.",
+    "createdBy": "dfsdf",
+    "latestVersion": true,
+    "testScript": {
+      "id": 303723,
+      "type": "STEP_BY_STEP",
+      "steps": [
+        {
+          "expectedResult": "Сообщение успешно найдено, атрибут отсутствует",
+          "description": "Вычитать топики Report.Cards.Event и проверить отсутствие аттрибута \"trx.atm.regionId\"<br><br><br>",
+          "index": 2,
+          "id": 1189522
+        },
+        {
+          "description": "<strong><span style=\"color: rgb(226, 80, 65);\">Востановить первоначальную конфигурацию модуля</span></strong>",
+          "index": 3,
+          "id": 1189523
+        },
+        {
+          "attachments": [
+            {
+              "fileName": "2c023513-4edf-4bc4-80de-e879430b26f0",
+              "fileSize": 27787,
+              "name": "DESSTEPS_8183_Автотест с примерами сообщений(нет указанного правила).txt",
+              "id": 213162,
+              "createdOn": "2020-02-03T15:47:45.652Z",
+              "projectId": 23449,
+              "userKey": "yazmukhamedov-im"
+            }
+          ],
+          "expectedResult": "Сообщения успешно отправлены.",
+          "description": "Подготовить сообщения для топиков с одинаковым user_id, event_id, timestamp,<br>- Tr.RSA.Cards.EVENT<br>- Tr.RSA.Cards.EXT_FACT<br>- Tr.RSA.Cards.EXT_FACT_UPDATE<br>- Tr.RSA.Cards.RULES<br>(main=true, rule_id НЕ должен находиться по запросу запросу:<br>select id, name from rsa_core.pm_rule where deleted is null;)<br>- Tr.RSA.Cards.RESOLUTION_UPDATE<br>и отправить в топики",
+          "index": 1,
+          "id": 1189521
+        },
+        {
+          "testData": "возможные поля для изменения:<br> \"throughMessageFields\" ",
+          "expectedResult": "Новое значение конфигов успешно приминились.<br>В логе отсутствует ошибка связанная с работой Zk.<br>В логе отсутствует запись об пересоздание соединение с кафкой, базой и тп.",
+          "description": "Открыть Zk и изменить одно из полей&nbsp;<section><section><div title=\"Нажмите, чтобы изменить\">znode&nbsp;/config-fmaas/adapters/bl_qlik_reports/simple-config :</div><div title=\"Нажмите, чтобы изменить\"><br></div><div title=\"Нажмите, чтобы изменить\"><br>поле \"throughMessageFields\" убрав из списка фич передаваемых в топик Report.RSA.Cards.Event - \"trx.atm.regionId\" <br><br></div></section><div title=\"Нажмите, чтобы изменить\"><br></div></section>",
+          "index": 0,
+          "id": 1189027
+        }
+      ]
+    },
+    "lastTestResultStatus": "Pass",
+    "name": "\"Горячая (без полного рестарта)\" замена znode  /config-fmaas/adapters/bl_qlik_reports/simple-config",
+    "parameters": {
+      "variables": [],
+      "entries": []
+    },
+    "key": "FMAAS-T4",
+    "status": "Не актуальный"
+  },
+  {
+    "owner": "dsfsd",
+    "updatedBy": "sdfsdf",
+    "customFields": {
+      "Команда": "SAFP. Дополнительная обработка [61030475]",
+      "АС": "Антифрод ФЛ. Дополнительная обработка [CI01099194]",
+      "Функциональная принадлежность": "Обработка",
+      "Согласование с аналитиком": "Согласовано",
+      "Тип теста": "СТ",
+      "Автоматизирован": "Да",
+      "Модуль": "tr-logic",
+      "Вид тестирования": "Регресс"
+    },
+    "updatedOn": "2023-04-25T14:21:49.180Z",
+    "majorVersion": 1,
+    "priority": "Medium",
+    "createdOn": "2020-02-21T09:18:12.154Z",
+    "labels": [
+      "StatusNone"
+    ],
+    "objective": "В случае отправки \"EPOS - Оплата покупки\"&nbsp;поле <strong>subtype</strong> не измененилось при отправка запрос логики в РСА",
+    "component": "tr-logic",
+    "projectKey": "FMAAS",
+    "folder": "/Регресс/ФП ДО/Регресс по модулям/tr_logic - релизы не планируется/Интеграция",
+    "createdBy": "sdfsdf-im",
+    "latestVersion": true,
+    "testScript": {
+      "id": 327259,
+      "type": "STEP_BY_STEP",
+      "steps": [
+        {
+          "expectedResult": "Сообщение найдено в логе /u01/fraudmon/tr-logic/logs/messages_rbstorsa.log<br>Значение subtype не было изменено.<br><br><span style=\"color: rgb(204, 204, 204);\">Паттерн для поиска сообщения: 12:11:26.548 [logic-request-swarm-2] INFO &nbsp;messages.rsa.request -</span>",
+          "description": "Сообщение из шага 1 было передано из фронт адаптера в логику и было отправлено в RSA без изменение поля <span style=\"color: rgb(0, 0, 0);\"><strong>subtype</strong></span>",
+          "index": 1,
+          "id": 1277662
+        },
+        {
+          "testData": "endpoint: https://10.116.240.107:8081/asfm/v1.0/fraud/request",
+          "attachments": [
+            {
+              "fileName": "c477b19f-2293-4970-9be5-4c27bb76ff82",
+              "fileSize": 2789,
+              "name": "analyze_full.json",
+              "id": 276672,
+              "createdOn": "2020-02-21T09:09:29.048Z",
+              "projectId": 23449,
+              "userKey": "fsdfgfdg"
+            }
+          ],
+          "expectedResult": "Сообщение успешно отправлено и найдено в логе /u01/fraudmon/front-adapter-rsa/logs/messages-rbs.log фронт-адаптера<br><br><span style=\"color: rgb(204, 204, 204);\">Паттерн для поиска сообщения : 12:11:26.542 [rbs-worker-1 task-13] INFO messages-rbs.rq - { \"request_id\": \"63752ZX16ZXC126F35A668FD93\",</span>",
+          "description": "Сгенерировать и отправить RBS запрос с параметрами:<ul><li>\"actionType\": \"ANALYZE\",</li><li>\"type\": \"PAYMENT\",</li><li>\"subtype\": \"EPOS_PURCHASE\",</li><li>\"eventDescription\": \"EPOS - Оплата покупки\"</li></ul><br>Для \"Тип операции\" = 1 использовать<br>Для \"Тип операции\" = 2 использовать <br><br>",
+          "index": 0,
+          "id": 1277661
+        }
+      ]
+    },
+    "lastTestResultStatus": "Fail",
+    "name": "Отправка сообщения РБС с 'subtype':'EPOS_PURCHASE' и 'eventDescription':'EPOS - Оплата покупки'",
+    "parameters": {
+      "variables": [],
+      "entries": []
+    },
+    "key": "FMAAS-T7",
+    "status": "Актуальный"
+  },
+  {
+    "owner": "123",
+    "updatedBy": "sdfsdf",
+    "customFields": {
+      "Команда": "SAFP. Дополнительная обработка [61030475]",
+      "АС": "Антифрод ФЛ. Дополнительная обработка [CI01099194]",
+      "Функциональная принадлежность": "Обработка",
+      "Согласование с аналитиком": "Согласовано",
+      "Тип теста": "СТ",
+      "Автоматизирован": "Да",
+      "Модуль": "tr-logic",
+      "Вид тестирования": "Регресс"
+    },
+    "updatedOn": "2023-04-25T14:21:49.001Z",
+    "majorVersion": 1,
+    "priority": "High",
+    "createdOn": "2020-02-21T09:26:45.002Z",
+    "labels": [
+      "StatusNone"
+    ],
+    "objective": "В случае отправки \"EPOS - Завершение покупки\" поле <strong>subtype</strong> <span style=\"color: rgb(226, 80, 65);\">измененилось&nbsp;</span>при отправка запрос логики в РСА",
+    "component": "tr-logic",
+    "projectKey": "FMAAS",
+    "folder": "/Регресс/ФП ДО/Регресс по модулям/tr_logic - релизы не планируется/Интеграция",
+    "createdBy": "fdsfsd",
+    "latestVersion": true,
+    "testScript": {
+      "id": 327262,
+      "type": "STEP_BY_STEP",
+      "steps": [
+        {
+          "expectedResult": "Сообщение найдено в логе /u01/fraudmon/tr-logic/logs/messages_rbstorsa.log<br>Значение subtype было изменено на <strong>EPOS_END_PURCHASE</strong>.<br><br><span style=\"color: rgb(204, 204, 204);\">Паттерн для поиска сообщения : 12:11:26.548 [logic-request-swarm-2] INFO messages.rsa.request -</span>",
+          "description": "Сообщение из шага 1 было передано из фронт адаптера в логику и было отправлено в РСА с изменением поля <strong>subtype&nbsp;</strong>на&nbsp;<strong>EPOS_END_PURCHASE</strong>",
+          "index": 1,
+          "id": 1277686
+        },
+        {
+          "testData": "endpoint: asfm/v1.0/fraud/request",
+          "attachments": [
+            {
+              "fileName": "b2478bcf-b7de-45fd-baed-12c56190a9ef",
+              "fileSize": 2789,
+              "name": "analyze_full.json",
+              "id": 276676,
+              "createdOn": "2020-02-21T09:26:25.018Z",
+              "projectId": 23449,
+              "userKey": "dfdfg"
+            }
+          ],
+          "expectedResult": "Сообщение успешно отправлено и найдено в логе /u01/fraudmon/front-adapter-rsa/logs/messages-rbs.log фронт-адаптера<br><br><span style=\"color: rgb(204, 204, 204);\">Паттерн для поиска сообщения :: 12:11:26.542 [rbs-worker-1 task-13] INFO messages-rbs.rq - { \"request_id\": \"63752ZX16ZXC126F35A668FD93\",</span>",
+          "description": "Сгенерировать и отправить RBS запрос с параметрами:<ul><li>\"actionType\": \"ANALYZE\",</li><li>\"type\": \"PAYMENT\",</li><li>\"subtype\": \"EPOS_PURCHASE\",</li><li>\"eventDescription\": \"EPOS - Завершение покупки \"</li></ul><br>Для \"Тип операции\" = 1 использовать к<br>Для \"Тип операции\" = 2 использовать <br><br>",
+          "index": 0,
+          "id": 1277685
+        }
+      ]
+    },
+    "lastTestResultStatus": "Fail",
+    "name": "Отправка сообщения РБС с 'subtype': 'EPOS_PURCHASE' и eventDescription='EPOS - Завершение покупки'",
+    "parameters": {
+      "variables": [],
+      "entries": []
+    },
+    "key": "FMAAS-T8",
+    "status": "Актуальный"
+  },
+  {
+    "owner": "sdfsd",
+    "updatedBy": "sdgdfg",
+    "customFields": {
+      "Команда": "SAFP. Дополнительная обработка [61030475]",
+      "АС": "Антифрод ФЛ. Дополнительная обработка [CI01099194]",
+      "Функциональная принадлежность": "Обработка",
+      "Согласование с аналитиком": "Согласовано",
+      "Тип теста": "СТ",
+      "Автоматизирован": "Да",
+      "Модуль": "tr-logic",
+      "Вид тестирования": "Регресс"
+    },
+    "updatedOn": "2023-04-25T14:21:49.092Z",
+    "majorVersion": 1,
+    "priority": "Low",
+    "createdOn": "2020-02-21T09:48:28.456Z",
+    "labels": [
+      "StatusNone"
+    ],
+    "objective": "В случае отправки \"EPOS - P2P переводы\" поле <strong>subtype</strong> не измененилось при отправка запрос логики в РСА",
+    "component": "tr-logic",
+    "projectKey": "FMAAS",
+    "folder": "/Регресс/ФП ДО/Регресс по модулям/tr_logic - релизы не планируется/Интеграция",
+    "createdBy": "dsfsdf",
+    "latestVersion": true,
+    "testScript": {
+      "id": 327273,
+      "type": "STEP_BY_STEP",
+      "steps": [
+        {
+          "expectedResult": "Сообщение найдено в логе /u01/fraudmon/tr-logic/logs/messages_rbstorsa.log<br>Значение subtype не было изменено.<br><br><span style=\"color: rgb(204, 204, 204);\">Паттер для поиска сообщения: 12:11:26.548 [logic-request-swarm-2] INFO &nbsp;messages.rsa.request -</span>",
+          "description": "Сообщение из шага 1 было передано из фронт адаптера в логику и было отправлено в РСА без изменение поля <span style=\"color: rgb(0, 0, 0);\"><strong>subtype</strong></span>",
+          "index": 1,
+          "id": 1277773
+        },
+        {
+          "testData": "endpoint: 1/asfm/v1.0/fraud/request",
+          "attachments": [
+            {
+              "fileName": "6a462ed1-b9a6-4343-9fa3-ea79fea6b016",
+              "fileSize": 2082,
+              "name": "analyze p2p.txt",
+              "id": 276801,
+              "createdOn": "2020-02-21T11:50:27.954Z",
+              "projectId": 23449,
+              "userKey": "yazmukhamedov-im"
+            }
+          ],
+          "expectedResult": "Сообщение успешно отправлено и найдено в логе /u01/fraudmon/front-adapter-rsa/logs/messages-rbs.log фронт-адаптера<br><br><span style=\"color: rgb(204, 204, 204);\">Паттер для поиска сообщения: 12:11:26.542 [rbs-worker-1 task-13] INFO messages-rbs.rq - { \"request_id\": \"63752ZX16ZXC126F35A668FD93\",</span>",
+          "description": "Сгенерировать и отправить RBS запрос с параметрами:<ul><li>\"actionType\": \"ANALYZE\",</li><li>\"type\": \"PAYMENT\",</li><li>\"subtype\": \"EPOS_P2P\",</li><li>\"eventDescription\": \"EPOS - P2P переводы\"</li><li><br></li></ul>Для \"Тип операции\" = 1 использовать<br>Для \"Тип операции\" = 2 использовать <br><br>",
+          "index": 0,
+          "id": 1277774
+        }
+      ]
+    },
+    "lastTestResultStatus": "Fail",
+    "name": "Отправка сообщения РБС с 'subtype':'EPOS_P2P' и 'eventDescription':'EPOS - P2P переводы'",
+    "parameters": {
+      "variables": [],
+      "entries": []
+    },
+    "key": "FMAAS-T9",
+    "status": "Актуальный"
+  },
+  {
+    "owner": "sdfsd",
+    "updatedBy": "sdfsdf",
+    "customFields": {
+      "АС": "Антифрод ФЛ. Сервис резервной обработки (Stand-In) [CI02001721]",
+      "Функциональная принадлежность": "Интеграция",
+      "Согласование с аналитиком": "Согласовано",
+      "Тип теста": "ИФТ",
+      "Автоматизирован": "Не применимо",
+      "Вид тестирования": "Регресс"
+    },
+    "updatedOn": "2022-07-27T11:39:44.351Z",
+    "majorVersion": 1,
+    "priority": "High",
+    "createdOn": "2020-03-02T09:45:37.079Z",
+    "labels": [
+      "StatusNone"
+    ],
+    "objective": "Проверить, что в результате работы standIn сработало правило, которое вызвало \"УВ: Отправка сообщения в ЕРКЦ\", необходимое сообщени было создано и отправлено в топик Tr.UnblkActionRQ.<br>А модуль adapter-unified обработал это сообщение и на основании этого сообщения сгенерировал своё в КСШ",
+    "component": "stand-in",
+    "projectKey": "FMAAS",
+    "folder": "/Неактуальные(мусор, корзина)",
+    "createdBy": "dsfsdf",
+    "latestVersion": true,
+    "testScript": {
+      "id": 333525,
+      "type": "STEP_BY_STEP",
+      "steps": [
+        {
+          "expectedResult": "Сообщение успешно обработано в ЕРКЦ",
+          "description": "Убедиться, что сообщение дошло в ЕРКЦ",
+          "index": 4,
+          "id": 1783470
+        },
+        {
+          "expectedResult": "Сообщение в топике успешно найдено.",
+          "description": "Вычитать топик Tr.UnblkActionRQ и найти сообщение от tr-standIn, которое было найдено в шаге 3&nbsp;",
+          "index": 3,
+          "id": 1303049
+        },
+        {
+          "testData": "<ul><li><a class=\"fr-strong\" href=\"https://confluence.ca.sbrf.ru/pages/viewpage.action?pageId=2344948383#expand-\" rel=\"noopener noreferrer\" target=\"_blank\">Маппинг сообщения в Tr.UnblkActionRq</a> находится в пункте 3.1</li></ul>",
+          "expectedResult": "Отправляемое сообщение тр-стендином в топик Tr.UnbllckActionRq успешно найдено в логе.<br>Сообщение соответствует маппингу.",
+          "description": "В логе /u01/fraudmon/adapter-unified/logs/standin_control_action.log найдено сообщение отправляемое в топик Tr.UnblkActionRQ cо константой \"<strong>ERKC_STANDIN</strong> \" в поле masterSystemType<br><br>",
+          "index": 2,
+          "id": 1303048
+        },
+        {
+          "expectedResult": "Сообщение успешно сгенерировано и отправлено.<br>СтендИн обработал транзацию и выдал  вердикт на основании правила из предусловия (шаг 1)",
+          "description": "Сгенерировать и отправить транзакцию ЕРИБ/ЕСА/ЕФС из предыдущего шага на которое стендИн выдаст правило из предусловия",
+          "index": 1,
+          "id": 1303047
+        },
+        {
+          "testData": "Все правила стендина хранятся в Zk /config-fmaas/tr-standin/drools.",
+          "expectedResult": "Найдено правило для которого в блоке then имеется вызов&nbsp;<em>SrvPutSuspiciousTransaction</em><br><br><br>",
+          "description": "<strong>Предусловие:</strong><br>Имеется правило в стендине, для которого результатом сработки будет отправка запроса на подтверждение в ЕРКЦ (<em>SrvPutSuspiciousTransaction)</em><br><br>",
+          "index": 0,
+          "id": 1302760
+        }
+      ]
+    },
+    "lastTestResultStatus": "Pass",
+    "name": "1. Отправка сообщения на подтвержения в ЕРКЦ и проверка его формата",
+    "parameters": {
+      "variables": [],
+      "entries": []
+    },
+    "key": "FMAAS-T11",
+    "status": "Не актуальный"
+  },
+  {
+    "owner": "fdsf",
+    "updatedBy": "sdfsg",
+    "customFields": {
+      "Команда": "SAFP. Внутренние интеграции [61007719]",
+      "АС": "Антифрод ФЛ. Интеграционный сервис [CI01099171]",
+      "Функциональная принадлежность": "Интеграция",
+      "Согласование с аналитиком": "Согласовано",
+      "Тип теста": "СТ",
+      "Автоматизирован": "Да",
+      "Модуль": "adapter-unified.standin_control_action",
+      "Вид тестирования": "Регресс"
+    },
+    "updatedOn": "2023-05-10T12:35:38.713Z",
+    "majorVersion": 1,
+    "priority": "High",
+    "createdOn": "2020-03-02T10:52:44.181Z",
+    "labels": [
+      "StatusNone"
+    ],
+    "objective": "Корректная отработка модуля adapter-unified при получении сообщения в поле <strong>masterSystemType&nbsp;</strong>которого указано значение<strong>&nbsp;\"ERKC_STANDIN\"</strong>",
+    "projectKey": "FMAAS",
+    "folder": "/Регресс/ФП ИС/Регресс по модулям/adapter-unified/adapter-unified.standin_control_action",
+    "createdBy": "yazmukhamedov-im",
+    "latestVersion": true,
+    "testScript": {
+      "id": 333627,
+      "type": "STEP_BY_STEP",
+      "steps": [
+        {
+          "expectedResult": "Запомнить ClientTransactionId",
+          "description": "Добавить&nbsp;запись в БД standin-journal таблица CONTROL_ACTION, у которой return_code = 0.<br>Запомнить ClientTransactionId",
+          "index": 0,
+          "id": 1629483
+        },
+        {
+          "testData": "&nbsp;{<br>\"reactionsData\" :",
+          "expectedResult": "Сообщение успешно сгенерировано и отправлено в топик.",
+          "description": "Сгенерировать и отправить сообщение на обзвон в ЕРКЦ в топик Tr.UnblkActionRQ.<br>&nbsp;<strong>masterSystemType =&nbsp;</strong><strong>\"ERKC_STANDIN\"</strong><br>ClientTransactionId из предыдущего шага",
+          "index": 1,
+          "id": 1303150
+        },
+        {
+          "testData": "sdfsdgg",
+          "expectedResult": "Все обязательные заголовки заполнены.",
+          "description": "На основании сообщения из шага 2 было сформирован и отправлен запрос в MQ <span data-ref=\"61cb9160-59fe-4502-a4e9-92034b5cd398\">ESB.ASFM.ASYNC.IN</span> с заполненными заголовками.<br><br><br>",
+          "index": 3,
+          "id": 1307129
+        },
+        {
+          "expectedResult": "В логе /u01/fraudmon/adapter-unified/logs/standin_control_action<span lang=\"ru\"></span> имеется запись с сообщением из шага 1 и префиксом \"<span style=\"color: rgb(97, 189, 109);\">получено новое сообщение из кафки</span>\"<br><br><br>",
+          "description": "Сообщение из шага 2 попало в обработку модулем standin_control_action.",
+          "index": 2,
+          "id": 1306311
+        },
+        {
+          "testData": "sfdsdf",
+          "expectedResult": "Все обязательные поля в сгенерированном сообщение заполнены.<br>В логе /u01/fraudmon/adapter-unified/logs/standin_control_action имеется запись об отправке запроса в MQ <span data-ref=\"61cb9160-59fe-4502-a4e9-92034b5cd398\">ESB.ASFM.ASYNC.IN</span><br><br><span data-ref=\"61cb9160-59fe-4502-a4e9-92034b5cd398\">У транзакции значение в <strong>BlockStatus</strong> \"IsBlockMBK = true\"</span>",
+          "description": "Все необходимые поля тела запроса из шага 3 так же заполнено на основании маппинга из вложения.<br><br>Проверить, что у отправленной транзакции установлено значение в <strong>BlockStatus</strong> \"IsBlockMBK = true\".<br>Сообщение сформировано в пределах таймаута (waitTimeAction.ms) и количестве попыток (count) указанного в Zookeeper<br><br><br>",
+          "index": 4,
+          "id": 1306312
+        },
+        {
+          "expectedResult": "Отправленная квитанция на запрос из шага 3 найдена в логе /u01/fraudmon/adapter-unified/logs/standin_control_action<span lang=\"ru\"></span><br>",
+          "description": "В ответ на сообщение отправленное в шаге 4 была сформирована квитанция отправленная в очередь ESB.ASFM.ASYNC.OUT &nbsp;<br>Ответ из очереди КСШ ФС необходимо выбирать по следующему условию: MQMD.CorrelId ответа должен совпадать с MQMD.MsgId запроса.<br><br>",
+          "index": 5,
+          "id": 1306313
+        }
+      ]
+    },
+    "lastTestResultStatus": "Fail",
+    "name": "2.1 Успешная обработка сообщения с masterSystemType= ERKC_STANDIN и отправка результирующего запроса в MQ",
+    "parameters": {
+      "variables": [],
+      "entries": []
+    },
+    "key": "FMAAS-T12",
+    "status": "Актуальный"
+  },
+  {
+    "owner": "sdfsdf",
+    "updatedBy": "sdfsdg",
+    "customFields": {
+      "Команда": "SAFP. Внутренние интеграции [61007719]",
+      "АС": "Антифрод ФЛ. Интеграционный сервис [CI01099171]",
+      "Функциональная принадлежность": "Интеграция",
+      "Согласование с аналитиком": "Согласовано",
+      "Тип теста": "СТ",
+      "Автоматизирован": "Да",
+      "Модуль": "adapter-unified.standin_control_action",
+      "Вид тестирования": "Регресс"
+    },
+    "updatedOn": "2023-05-10T12:35:38.861Z",
+    "majorVersion": 1,
+    "priority": "Medium",
+    "createdOn": "2020-03-02T12:13:56.991Z",
+    "labels": [
+      "StatusNone"
+    ],
+    "objective": "Корректная отработка модуля adapter-unified при получении сообщения в поле <strong>masterSystemType&nbsp;</strong>которого указано значение<strong>&nbsp;\"ERKC_STANDIN\"</strong>",
+    "projectKey": "FMAAS",
+    "folder": "/Регресс/ФП ИС/Регресс по модулям/adapter-unified/adapter-unified.standin_control_action",
+    "createdBy": "dsfsdf",
+    "latestVersion": true,
+    "testScript": {
+      "id": 334071,
+      "type": "STEP_BY_STEP",
+      "steps": [
+        {
+          "testData": "sdfsdf",
+          "expectedResult": "Сообщение успешно сгенерировано и отправлено в топик.",
+          "description": "Сгенерировать и отправить сообщение на обзвон в ЕРКЦ в топик Tr.UnblkActionRQ.<br> <strong>masterSystemType =&nbsp;</strong><strong>\"ERKC_STANDIN\"&nbsp;</strong>в котором отсутствует атрибут сardNum",
+          "index": 0,
+          "id": 1306319
+        },
+        {
+          "expectedResult": "В логе /u01/fraudmon/adapter-unified/logs/standin_control_action<span lang=\"ru\"></span> имеется запись с сообщением из шага 1 и префиксом \"<span style=\"color: rgb(97, 189, 109);\">получено новое сообщение из кафки</span>\"<br><br><br>",
+          "description": "Сообщение из шага 1 попало в обработку модулем standin_control_action<span lang=\"ru\"></span>.",
+          "index": 1,
+          "id": 1306318
+        },
+        {
+          "testData": "dsfsfs",
+          "expectedResult": "В логе &nbsp;/u01/fraudmon/adapter-unified/logs/standin_control_action<span lang=\"ru\"></span>.log найдено сообщение с ошибкой<br><span style=\"color: rgb(0, 168, 133);\">\"В полученном сообщении не заполнено обязательное поле cardNum. Отправка в PutSuspiciousTransaction пропущена\"</span><br><br><br><br>",
+          "description": "В логе /u01/fraudmon/adapter-unified/logs/standin_control_action<span lang=\"ru\"></span>.log зафиксирована ошибка, поскольку отсутствует обязательное поле:<br><br><br><br>",
+          "index": 2,
+          "id": 1306317
+        }
+      ]
+    },
+    "lastTestResultStatus": "Fail",
+    "name": "2.2 Неуспешная обработка сообщения с masterSystemType= \"ERKC_STANDIN\" (отсутствует сardNum)",
+    "parameters": {
+      "variables": [],
+      "entries": []
+    },
+    "key": "FMAAS-T13",
+    "status": "Актуальный"
+  },
+  {
+    "owner": "sdfsdf",
+    "updatedBy": "sdfsdg",
+    "customFields": {
+      "Команда": "SAFP. Внутренние интеграции [61007719]",
+      "АС": "Антифрод ФЛ. Интеграционный сервис [CI01099171]",
+      "Функциональная принадлежность": "Обработка",
+      "Согласование с аналитиком": "Согласовано",
+      "Тип теста": "СТ",
+      "Автоматизирован": "Да",
+      "Модуль": "adapter-unified.standin_control_action",
+      "Вид тестирования": "Регресс"
+    },
+    "updatedOn": "2023-05-10T12:35:39.280Z",
+    "majorVersion": 1,
+    "priority": "High",
+    "createdOn": "2020-03-02T12:33:51.307Z",
+    "labels": [
+      "StatusNone"
+    ],
+    "objective": "dsfsdfsdf",
+    "projectKey": "FMAAS",
+    "folder": "/Регресс/ФП ИС/Регресс по модулям/adapter-unified/adapter-unified.standin_control_action",
+    "createdBy": "dsfsdfsdf",
+    "latestVersion": true,
+    "testScript": {
+      "id": 334117,
+      "type": "STEP_BY_STEP",
+      "steps": [
+        {
+          "description": "<strong>Предусловие:&nbsp;</strong><br>В ЕРКЦ было отправлен запрос с вызовом сервиса SrvPutSuspiciousTransaction.<br>ЕРКЦ выдал ответ о получении этого запроса.",
+          "index": 0,
+          "id": 1306909
+        },
+        {
+          "expectedResult": "В логе /u01/fraudmon/adapter-unified/logs/control_action найти сообщение о полученном сообщении в очереди ESB.ASFM.ASYNC.REQUEST по паттерну: \"<span style=\"color: rgb(26, 188, 156);\">Получено новое сообщение из ESB.ASFM.ASYNC.REQUEST</span>\",<br>и обработкой полученных новых сообщение (с вызовом SrvNotifyPrivateTransactionFraudStatus )",
+          "description": "В ответ на сообщение отправленное в предусловии, ЕРКЦ сформировал запрос с вызовом метода SrvNotifyPrivateTransactionFraudStatus.",
+          "index": 1,
+          "id": 1306539
+        },
+        {
+          "expectedResult": "Ответная квитанция сформирована, ее &nbsp;можно найти в логе /u01/fraudmon/adapter-unified/logs/control_action по паттерну: \"<span style=\"color: rgb(26, 188, 156);\">Сообщение отправлено в queue://FRAUD/ESB.ASFM.ASYNC.RESPONSE.</span>\"<br>Заголовки квитанции заполнены корректно.",
+          "description": "Сформировать квитанцию по полученным запросам в шаге 2 с заполенными заголовками:<br><ul><li>заполнять идентификатор ответного сообщения(поле RqUID в теле сообщения) значением идентификатора сообщения запроса;</li><li>поле MQMD.CorrelId заголовка ответного сообщения должен быть равно полю MQMD.MsgId заголовка запроса;</li><li>при формировании ответных сообщений заполнять атрибут SystemId тела сообщения значением равным значению атрибута SPName запроса;</li><li>копировать MQRFH2 заголовки из запроса в ответное сообщение;</li><li>заполнять поля RqTm и OperationName в заголовке MQRFH2 значениями времени ответа и корневым тэгом ответа соответственно;</li><li>отправлять ответное сообщение в очередь для ответа, определенную в соответствии с данными в полученных заголовках MQMD (MQMD.ReplyToQ - Очередь для ответа) и MQMD.ReplyToQMgr соответственно.</li></ul><br><br>",
+          "index": 2,
+          "id": 1306910
+        },
+        {
+          "testData": "sdfsdfsdf",
+          "expectedResult": "Тело &nbsp;квитанции заполенено верно. Значение атрибута StatusCode = 0.",
+          "description": "В теле сообщения из шага 3 заполнены все обязательные поля на основании маппинга.",
+          "index": 3,
+          "id": 1306963
+        }
+      ]
+    },
+    "lastTestResultStatus": "Fail",
+    "name": "2.3 Успешная обработка запроса SrvNotifyPrivateTransactionFraudStatus полученного от ЕРКЦ",
+    "parameters": {
+      "variables": [],
+      "entries": []
+    },
+    "key": "FMAAS-T14",
+    "status": "Актуальный"
+  }
+]
