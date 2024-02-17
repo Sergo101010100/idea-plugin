@@ -1,4 +1,4 @@
-package org.intellij.sdk.toolWindow.dto;
+package ru.sbrf.fraud.at.jbplugin.dto;
 
 import java.util.Date;
 import java.util.List;
@@ -31,6 +31,10 @@ public class Test {
 
     @Override
     public String toString() {
+        return key + " " + name;
+    }
+
+    public String getKeyName(){
         return key + " " + name;
     }
 }
