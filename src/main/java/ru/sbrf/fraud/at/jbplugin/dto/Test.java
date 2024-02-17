@@ -34,7 +34,30 @@ public class Test {
         return key + " " + name;
     }
 
-    public String getKeyName(){
-        return key + " " + name;
+
+    public String getFullData() {
+        return "Test{" +
+                "owner='" + owner + '\'' +
+                ", updatedBy='" + updatedBy + '\'' +
+                ", customFields=" + customFields +
+                ", updatedOn=" + updatedOn +
+                ", precondition='" + precondition + '\'' +
+                ", majorVersion=" + majorVersion +
+                ", priority='" + priority + '\'' +
+                ", createdOn=" + createdOn +
+                ", labels=" + labels +
+                ", objective='" + objective + '\'' +
+                ", component='" + component + '\'' +
+                ", projectKey='" + projectKey + '\'' +
+                ", folder='" + folder + '\'' +
+                ", createdBy='" + createdBy + '\'' +
+                ", latestVersion=" + latestVersion +
+                ", testScript=" + testScript +
+                ", lastTestResultStatus='" + lastTestResultStatus + '\'' +
+                ", name='" + name + '\'' +
+                ", parameters=" + parameters +
+                ", key='" + key + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

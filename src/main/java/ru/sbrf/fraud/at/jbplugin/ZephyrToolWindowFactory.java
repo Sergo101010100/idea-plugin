@@ -2,11 +2,20 @@
 package ru.sbrf.fraud.at.jbplugin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.intellij.openapi.editor.Document;
+import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.editor.EditorFactory;
+import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.vfs.LocalFileSystem;
+import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.openapi.vfs.VirtualFileWrapper;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;
 import com.intellij.openapi.wm.impl.FocusManagerImpl;
+import com.intellij.testFramework.LightVirtualFile;
+import com.intellij.ui.components.JBLabel;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.tabs.impl.JBEditorTabs;
@@ -16,10 +25,12 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -44,12 +55,19 @@ final class ZephyrToolWindowFactory implements ToolWindowFactory, DumbAware {
         MouseListener mouseListener = new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                   // JBEditorTabs jbEditorTabs = new JBEditorTabs(project, new FocusManagerImpl(), );
-                  //  jbEditorTabs.add()
-                    //ZephyrTest.main(new String[]{});
-                    //   System.out.println(tree.getModel().);
-                    //JBTextArea area = new JBTextArea(jListTests.getModel().getElementAt(index).toString());
-//                    System.out.println("Double clicked on Item " + index);
+                    TreePath path = tree.getPathForLocation(e.getX(), e.getY());
+                    if (path != null) {
+                        DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
+                        if (node.getUserObject() instanceof Test test) {
+                            String data = test.getFullData();
+
+                            // Добавляем Editor в Editor tabs
+                            VirtualFile wrapper = new LightVirtualFile(test.key, data);
+
+                            FileEditorManager.getInstance(project).openFile(wrapper, true);
+
+                        }
+                    }
                 }
             }
         };
@@ -63,14 +81,14 @@ final class ZephyrToolWindowFactory implements ToolWindowFactory, DumbAware {
 
     private void createTreeNodeTests(DefaultMutableTreeNode top, Test[] tests) {
         //https://docs.oracle.com/javase/tutorial/uiswing/components/tree.html
-        DefaultMutableTreeNode folder = null;
-        DefaultMutableTreeNode nodeTest = null;
+        DefaultMutableTreeNode folder;
+        DefaultMutableTreeNode nodeTest;
 
         for (Test test : tests) {
             //TODO здесь нужно научится разделять и склеивать папки
             folder = new DefaultMutableTreeNode(test.folder);
             top.add(folder);
-            nodeTest = new DefaultMutableTreeNode(test.getKeyName());
+            nodeTest = new DefaultMutableTreeNode(test);
             folder.add(nodeTest);
 
         }
