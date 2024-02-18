@@ -48,7 +48,8 @@ final class ZephyrToolWindowFactory implements ToolWindowFactory, DumbAware {
                     TreePath path = tree.getPathForLocation(e.getX(), e.getY());
                     if (path != null) {
                         DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
-                        if (node.getUserObject() instanceof Test test) {
+                        if (node.getUserObject() instanceof Test) {
+                            Test test = (Test) node.getUserObject();
                            // Добавляем Editor в Editor tabs
                             VirtualFile wrapper = new TestZephyrVirtualFile(test);
 
@@ -62,7 +63,7 @@ final class ZephyrToolWindowFactory implements ToolWindowFactory, DumbAware {
         tree.addMouseListener(mouseListener);
 
 
-        Content content = ContentFactory.getInstance().createContent(tree, "", false);
+        Content content = ContentFactory.SERVICE.getInstance().createContent(tree, "", false);
         toolWindow.getContentManager().addContent(content);
     }
 
