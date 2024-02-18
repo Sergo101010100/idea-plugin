@@ -4,10 +4,10 @@
 <idea-plugin>
 
   <!-- Unique id for this plugin. Must stay constant for the life of the plugin. -->
-  <id>org.intellij.sdk.toolWindow</id>
+  <id>ru.sbrf.fraud.at.jbplugin</id>
 
   <!-- Text to display as name on Settings | Plugin page -->
-  <name>SDK: Tool Window Sample</name>
+  <name>Zephyr TMS</name>
 
   <!-- Indicate this plugin can be loaded in all IntelliJ Platform-based products. -->
   <depends>com.intellij.modules.platform</depends>
@@ -15,10 +15,7 @@
   <!-- Text to display as description on Settings | Plugin page -->
   <description>
     <![CDATA[
-      This sample plugin illustrates how to create your custom tool window.<br>
-      See the
-      <a href="https://plugins.jetbrains.com/docs/intellij/tool-windows.html">Tool Windows</a>
-      for more information.
+     Плагин для работы с тестами из TMS "Zephyr Jira"
     ]]>
   </description>
   <change-notes>
@@ -31,11 +28,12 @@
   </change-notes>
 
   <!-- Text to display as company information on Settings | Plugin page -->
-  <vendor url="https://plugins.jetbrains.com">IntelliJ Platform SDK</vendor>
+  <vendor email="polyakov.a.gennad@sberbank.ru">IntelliJ Platform SDK</vendor>
 
   <extensions defaultExtensionNs="com.intellij">
     <toolWindow id="Zephyr" secondary="true" icon="AllIcons.Toolwindows.WebToolWindow" anchor="right"
                 factoryClass="ru.sbrf.fraud.at.jbplugin.ZephyrToolWindowFactory"/>
+    <fileEditorProvider implementation="ru.sbrf.fraud.at.jbplugin.TestZephyrEditorProvider"/>
   </extensions>
 
 </idea-plugin>

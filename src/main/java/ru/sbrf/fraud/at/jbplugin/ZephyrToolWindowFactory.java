@@ -2,35 +2,25 @@
 package ru.sbrf.fraud.at.jbplugin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.editor.EditorFactory;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.openapi.vfs.VirtualFileWrapper;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;
-import com.intellij.openapi.wm.impl.FocusManagerImpl;
 import com.intellij.testFramework.LightVirtualFile;
-import com.intellij.ui.components.JBLabel;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
-import com.intellij.ui.tabs.impl.JBEditorTabs;
 import com.intellij.ui.treeStructure.Tree;
-import ru.sbrf.fraud.at.jbplugin.dto.Test;
 import org.jetbrains.annotations.NotNull;
+import ru.sbrf.fraud.at.jbplugin.dto.Test;
 
-import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -59,10 +49,8 @@ final class ZephyrToolWindowFactory implements ToolWindowFactory, DumbAware {
                     if (path != null) {
                         DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
                         if (node.getUserObject() instanceof Test test) {
-                            String data = test.getFullData();
-
-                            // Добавляем Editor в Editor tabs
-                            VirtualFile wrapper = new LightVirtualFile(test.key, data);
+                           // Добавляем Editor в Editor tabs
+                            VirtualFile wrapper = new TestZephyrVirtualFile(test);
 
                             FileEditorManager.getInstance(project).openFile(wrapper, true);
 
