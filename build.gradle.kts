@@ -30,4 +30,7 @@ tasks {
     sinceBuild.set("213")
     untilBuild.set("213.*")
   }
+  withType<JavaCompile> {
+    options.encoding = "UTF-8"
+  }
 }

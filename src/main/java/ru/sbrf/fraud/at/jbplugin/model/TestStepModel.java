@@ -7,6 +7,8 @@ import java.util.List;
 
 public class TestStepModel extends AbstractTableModel {
     private final List<Step> steps;
+    private final String[] columnNames = {"Описание", "Ожидаемый результат", "Тестовые данные"};
+
 
     public TestStepModel(List<Step> steps) {
         this.steps = steps;
@@ -14,12 +16,12 @@ public class TestStepModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return 3;
+        return steps.size();
     }
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return columnNames.length;
     }
 
     @Override
@@ -35,4 +37,12 @@ public class TestStepModel extends AbstractTableModel {
                 throw new RuntimeException();
         }
     }
+
+    @Override
+    public String getColumnName(int columnIndex) {
+        return columnNames[columnIndex];
+    }
+
+    // Если вы хотите, чтобы столбцы были редактируемыми, переопределите следующие методы:
+    // isCellEditable, setValueAt
 }

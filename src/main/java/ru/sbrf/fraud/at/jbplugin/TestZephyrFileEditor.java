@@ -31,38 +31,25 @@ public class TestZephyrFileEditor extends BaseRemoteFileEditor {
     }
 
     private JComponent createEditorPanel() {
-
-        JPanel panel = new JPanel();
-        panel.add(JBLabelDecorator.createJBLabelDecorator(test.key), BorderLayout.EAST);
-        panel.add(new JBTextField(test.name), BorderLayout.WEST);
-
-        JBTable tableSteps = getStep();
-        panel.add(tableSteps, BorderLayout.CENTER);
-
         JBTabbedPane tabbedPane = new JBTabbedPane();
-        tabbedPane.addTab("Общая информация", panel);
-        tabbedPane.addTab("Шаги", tableSteps);
+
+        JPanel general = new JPanel();
+        general.add(JBLabelDecorator.createJBLabelDecorator(test.key), BorderLayout.EAST);
+        general.add(new JBTextField(test.name), BorderLayout.WEST);
+        tabbedPane.addTab("Общая информация", general);
+
+        JPanel steps = new JPanel();
+        JBTable tableSteps = getStep();
+        steps.add(tableSteps);
+        tabbedPane.addTab("Шаги", steps);
 
         return tabbedPane;
     }
 
     private JBTable getStep() {
-        DefaultTableColumnModel columnModel = new DefaultTableColumnModel();
-
-        TableColumn desc = new TableColumn(0);
-        desc.setHeaderValue("Описание");
-
-        TableColumn expected = new TableColumn(1);
-        expected.setHeaderValue("Ожидаемый результат");
-
-        TableColumn testData = new TableColumn(2);
-        expected.setHeaderValue("Тестовые данные");
-
-        columnModel.addColumn(desc);
-        columnModel.addColumn(expected);
-        columnModel.addColumn(testData);
-        JBTable table = new JBTable(new TestStepModel(test.testScript.steps), columnModel);
+        JBTable table = new JBTable(new TestStepModel(test.testScript.steps));
         table.setAutoResizeMode(JBTable.AUTO_RESIZE_ALL_COLUMNS);
+        table.doLayout();
         return table;
     }
 
