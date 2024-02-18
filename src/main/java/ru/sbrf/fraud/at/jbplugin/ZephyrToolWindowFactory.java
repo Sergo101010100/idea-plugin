@@ -22,6 +22,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -50,7 +51,7 @@ final class ZephyrToolWindowFactory implements ToolWindowFactory, DumbAware {
                         DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
                         if (node.getUserObject() instanceof Test) {
                             Test test = (Test) node.getUserObject();
-                           // Добавляем Editor в Editor tabs
+                            // Добавляем Editor в Editor tabs
                             VirtualFile wrapper = new TestZephyrVirtualFile(test);
 
                             FileEditorManager.getInstance(project).openFile(wrapper, true);
@@ -87,9 +88,8 @@ final class ZephyrToolWindowFactory implements ToolWindowFactory, DumbAware {
 
     private Test[] getTests() {
         String text;
-        try {
-            List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Sergo\\IdeaProjects\\tool_window\\src\\main\\resources\\tests.json"), StandardCharsets.UTF_8);
-            text = String.join(" ", lines);
+        try (InputStream tests = this.getClass().getClassLoader().getResourceAsStream("META-INF/tests.json")) {
+           text = new String(tests.readAllBytes(), StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
